@@ -54,3 +54,26 @@ pulse_data =
   relocate(id, visit) %>% 
   mutate(visit = recode(visit, "bl" = "00m"))
 ```
+
+## `pivot_wider`
+
+``` r
+analysis_results = 
+  tibble(
+    group = c("treatment", "treatment", "placebo", "placebo"),
+    time = c("pre", "post", "pre", "post"),
+    mean = c(4, 8, 3.5, 4)
+  )
+
+analysis_results %>%
+  pivot_wider(
+  names_from = "time", 
+  values_from = "mean"
+  )
+```
+
+    ## # A tibble: 2 x 3
+    ##   group       pre  post
+    ##   <chr>     <dbl> <dbl>
+    ## 1 treatment   4       8
+    ## 2 placebo     3.5     4
